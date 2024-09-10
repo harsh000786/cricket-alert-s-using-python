@@ -1,3 +1,4 @@
+
 from tkinter import *
 from tkinter.ttk import Combobox
 from PIL import ImageTk
@@ -11,36 +12,34 @@ class CricketScore:
         self.rootwindow.geometry('800x500')
         self.rootwindow.title('LIVE CRICKET SCORE')
 
-        # Background image
+       
         self.bg = ImageTk.PhotoImage(file=r'C:\Users\HARSH MHATRE\Downloads\crics.jpg')
         bg = Label(self.rootwindow, image=self.bg)
         bg.place(x=0, y=0, relwidth=1, relheight=1)
 
-        # Title Label
         self.label = Label(self.rootwindow, text="LIVE SCORE", font=("times new roman", 60), bg="#ADD8E6")
-        self.label.pack(pady=(10, 30))  # Padding to separate from top and next widget
+        self.label.pack(pady=(10, 30))  
 
         self.var = StringVar()
         self.matches = self.match_details()
         self.data = list(self.matches.keys())
 
-        # Combobox for match selection
         self.cb = Combobox(self.rootwindow, values=self.data, width=50)
-        self.cb.pack(pady=20)  # Add padding to create space between the widgets
+        self.cb.pack(pady=20)  
 
-        # Check Score Button
+        
         self.b1 = Button(self.rootwindow, text="Check Score", font=("times new roman", 15), command=self.show_match_details)
-        self.b1.pack(pady=10)  # Padding to create space
+        self.b1.pack(pady=10)  
 
     def select(self):
         return self.cb.get()
 
     def show_match_details(self):
         if hasattr(self, 'frame1'):
-            self.frame1.destroy()  # Destroy the previous frame if it exists
+            self.frame1.destroy()  
 
         self.frame1 = Frame(self.rootwindow, bg="#ADD8E6")
-        self.frame1.pack(pady=20, fill='x', expand=True)  # Fill horizontally and add padding
+        self.frame1.pack(pady=20, fill='x', expand=True)  
 
         selected_match = self.cb.get()
         x = self.matches.get(selected_match, {"match_header": "No Match Selected", "score_card": "", "summary": ""})
